@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>我的资源导航</title>
+    <link rel="stylesheet" href="img/style.css">
+</head>
+<body>
+<div class="container">
+    <nav class="sidebar" id="sidebar">
+        <ul class="sidebar-nav" id="sidebarNav"></ul>
+    </nav>
+
+    <main class="main-content">
+        <div class="search-wrapper">
+            <div class="xl-flkd">
+                <div class="xl-fl">
+                    <label for="searchTypeSelect" class="sr-only">选择搜索方向</label>
+                    <div class="custom-select" id="searchTypeSelect">
+                        <div class="custom-select-trigger">搜索</div>
+                        <div class="custom-options">
+                            <span class="custom-option selected" data-value="info">搜索</span>
+                            <span class="custom-option" data-value="image">图片</span>
+                            <span class="custom-option" data-value="video">视频</span>
+                            <span class="custom-option" data-value="news">新闻</span>
+                        </div>
+                    </div>
+                    <div class="search-ui">
+                        <ul class="search-ui-list" id="infoSearchUI">
+                            <li data-search-url="https://www.baidu.com/s?wd=">百度</li>
+                            <li data-search-url="https://www.sogou.com/web?query=">搜狗</li>
+                        </ul>
+                        <ul class="search-ui-list" id="imageSearchUI" style="display: none;">
+                            <li data-search-url="https://huaban.com/search/?q=">花瓣</li>
+                            <li data-search-url="https://www.zcool.com.cn/search/content?keyword=">站酷</li>
+                        </ul>
+                        <ul class="search-ui-list" id="videoSearchUI" style="display: none;">
+                            <li data-search-url="https://www.bilibili.com/search?keyword=">哔哩哔哩</li>
+                            <li data-search-url="https://www.youtube.com/results?search_query=">YouTube</li>
+                        </ul>
+                        <ul class="search-ui-list" id="newsSearchUI" style="display: none;">
+                            <li data-search-url="https://news.baidu.com/ns?word=">百度新闻</li>
+                            <li data-search-url="https://news.sina.com.cn/search?q=">新浪新闻</li>
+                        </ul>
+                    </div>
+                </div>
+                <form id="searchForm" class="optimized-search-form">
+                    <label for="searchInput" class="sr-only">选择</label>
+                    <input type="text" id="searchInput" placeholder="输入关键词"
+                           class="optimized-search-input" autocomplete="off">
+                    <button type="submit" class="optimized-search-button">搜索</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="categories" id="categories"></div>
+    </main>
+</div>
+
+<script src="img/app.js"></script>
+</body>
+</html>

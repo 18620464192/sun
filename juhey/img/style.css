@@ -1,0 +1,436 @@
+/* style.css */
+:root {
+    --bg-color: #F5F5F5;
+    --text-color: #8E9195;
+    --sidebar-bg: #040A13;
+    --link-hover: #146DE5;
+    --transition: all 0.3s ease;
+    overflow-x: hidden;
+}
+
+/* 基础样式 */
+body {
+    background-color: var(--bg-color);
+    margin: 0;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', '苹方字体','微软雅黑', Roboto, sans-serif;
+    line-height: 1.6;
+}
+
+a {
+    color: var(--text-color);
+    text-decoration: none;
+    transition: color var(--transition);
+}
+
+a:hover {
+    color: var(--link-hover);
+}
+
+/* 主容器 */
+.container {
+    display: flex;
+    position: relative;
+}
+
+/* ================= 侧边栏 ================= */
+
+
+/*侧边栏位置宽度背景等样式*/
+.sidebar {
+    position: fixed;/*固定定位*/
+    width: 240px;
+    height: 100vh;/*高度网页全屏*/
+    background: var(--sidebar-bg);/*背景色调用通用的颜色样式*/
+    transition: width 0.3s ease;/*为元素的宽度变化添加了过渡效果*/
+    z-index: 1000; /* 添加 z-index 值 */
+}
+/*侧边栏折叠样式*/
+.sidebar.collapsed {
+    width: 60px;
+}
+/*侧边栏折叠后隐藏文字样式*/
+.sidebar.collapsed li span {
+    display: none;
+}
+/*侧边栏导航样式*/
+.sidebar-nav {
+    padding: 0;
+}
+/*侧边栏导航li样式*/
+.sidebar-nav li {
+    display: flex;
+    align-items: center;
+    padding: 12px 20px;
+    transition: all 0.2s ease;
+    list-style: none;
+    color: #8E9195;
+    cursor: pointer;/*改变鼠标样式为手型，暗示元素可点击*/
+}
+
+.sidebar-nav li:hover {
+    background: rgba(255, 255, 255, 0.08);
+    color: #FFFFFF;
+}
+
+.sidebar-nav li.active {
+    background: linear-gradient(90deg, #007bff 0%, #00a8ff 100%);
+    color: #FFFFFF;
+}
+
+/*侧边栏导航展开折叠按钮样式*/
+.sidebar-toggle {
+    display: flex;
+    align-items: center;
+    margin-left: 20px;
+    margin-top: 20px;
+    cursor: pointer;
+}
+
+/*侧边栏导航展开折叠按钮图标样式*/
+.sidebar-toggle img {
+    width: 20px;
+}
+
+/* 折叠状态下的悬停提示 */
+.sidebar.collapsed li {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    padding: 14px !important; /* 确保图标居中 */
+}
+
+.sidebar.collapsed li:hover::after {
+    content: attr(data-title); /* 确保从li元素读取属性 */
+    position: absolute;
+    left: calc(100% + -15px); /* 增加间距避免鼠标移出 */
+    top: 50%;
+    transform: translateY(-50%);
+    background: #2D3640;
+    color: white;
+    padding: 6px 12px;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    white-space: nowrap;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.2s;
+    z-index: 99999; /* 设置为较大的值，确保在最顶层 */
+    box-shadow: 3px 3px 12px rgba(0,0,0,0.2);
+}
+
+.sidebar.collapsed li:hover::after {
+    opacity: 1;
+    transition-delay: 0.1s; /* 添加微小延迟避免闪烁 */
+}
+
+/* ================= 主内容区 ================= */
+
+/*右侧主内容框架*/
+.main-content {
+    margin-left: 240px; /* 默认侧边栏宽度 */
+    width: calc(100% - 240px); /* 默认侧边栏宽度 */
+    min-height: 100vh;
+
+    transition: margin-left 0.3s ease, width 0.3s ease; /* 添加过渡效果，折叠或展开时内容伸缩过度*/
+}
+
+/* ================= 搜索 ================= */
+
+/* 搜索模块框 */
+.search-wrapper {
+    margin-bottom: 30px;
+    padding: 20px 2% 20px 2%;
+    background-color: #ffffff;
+}
+
+/*!* 搜索模块内框 调整内容宽带 *!*/
+.xl-flkd {
+width: 60%;
+    padding: 60px 20% 60px 20%;
+    margin: 0 auto;
+    background-image: url('ssbj.png');
+    background-size: 100% 200%;
+    background-repeat: no-repeat;
+    background-position: center;
+    border-radius: 10px;
+
+}
+
+
+/*!* 搜索类别框和子分类别 *!*/
+.xl-fl{
+    display: flex;
+    align-items: center;  /* 垂直居中 */
+}
+
+/*!* 类别按钮样式 *!*/
+.custom-select-trigger {
+    width: 70px;
+    color: #FFFFFF;
+    font-size:1.0rem;
+    margin-left: 10px;
+    padding: 5px 10px;
+    background-image: url('xl-copy.svg');
+    background-size: 24px 24px;
+    background-repeat: no-repeat;
+    background-position: right 25px center;
+}
+
+/* 下拉菜单定位 */
+.custom-select {
+    position: relative;
+    cursor: pointer;
+}
+
+/* 鼠标经过显示下拉菜单 */
+.custom-select-trigger:hover + .custom-options,
+.custom-options:hover {
+    display: block;!important;
+}
+/* 下拉菜单框 */
+.custom-options {
+    position: absolute;
+    top: 80%;
+    left: 0;
+    width: 90%;
+    display: none;
+    padding: 10px 0;
+    background-color: #fff;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+    border-radius: 4px 4px 4px 4px;
+    cursor: pointer;
+    z-index: 10;
+}
+/* 下拉菜单列表 */
+.custom-option{
+     display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px 10px;
+}
+/* 鼠标经过列表项改变文字颜色 */
+.custom-option:hover {
+    color: #00a8ff;
+}
+
+/*搜索列表子分类容器*/
+.search-ui {margin-top: 0;
+}
+/*搜索列表子分类排列样式*/
+.search-ui-list {
+    display: flex;
+    gap: 10px;
+    list-style: none;
+    padding: 0;margin: 0;
+    color: #FFFFFF;
+}
+/*搜索列表子分类边框样式*/
+.search-ui-list li {
+    padding: 8px 12px;
+    border-radius: 5px 5px 0 0;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+/*搜索列表分类点击*/
+.search-ui-list li.active {
+    background: #ffffff;
+    color: #000000;
+}
+
+/*搜索容器样式 去掉后影响长度布局*/
+.optimized-search-form {
+    display: flex;
+
+}
+/*搜索输入框样式*/
+.optimized-search-input {
+    flex: 1;
+    padding: 10px;
+    border: none;
+    border-radius: 5px 0 0 5px;
+    font-size: 14px;
+    outline: none;
+}
+
+/*搜索按钮样式*/
+.optimized-search-button {
+    padding: 10px 30px;
+    background-color: #FF9F13;
+    color: white;
+    border: none;
+    border-radius: 0 5px 5px 0;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+/*鼠标经过搜索按钮样式*/
+.optimized-search-button:hover {
+    background-color: #FB6D00;
+}
+
+
+
+/* ================= 主显示内容模块 ================= */
+
+/*内容容器*/
+.categories{
+    padding: 20px 2%;
+}
+
+
+/* 侧边栏折叠时主内容区的样式 */
+.sidebar.collapsed ~ .main-content {
+    margin-left: 60px; /* 折叠后的侧边栏宽度 */
+    width: calc(100% - 60px); /* 折叠后的侧边栏宽度 */
+}
+
+/* 分类区块、间距设置等 */
+.category {
+    margin-top: 50px;
+}
+/* 第一个分类不一样上间距 */
+.category:first-child {
+    margin-top: 0;
+}
+
+/* 分类标题样式 */
+.category h2 {
+    color: #1A1D21;
+    font-size: 1rem;
+    margin-bottom: 10px;
+    position: relative;
+
+}
+/* 分类标题伪元素样式（标题文字前可以加样式） */
+/*.category h2::before {*/
+/*    content: '';*/
+/*    position: absolute;*/
+/*    left: 0;*/
+/*    top: 50%;*/
+/*    transform: translateY(-50%);*/
+/*    width: 6px;*/
+/*    height: 60%;*/
+/*    background: var(--link-hover);*/
+/*    border-radius: 4px;*/
+/*}*/
+
+/* 子类别选项卡容器 */
+.tab-nav {
+    display: flex;
+    margin-bottom: 20px;
+    gap: 20px;
+}
+/* 子类别选项卡样式 */
+.tab-link {
+    cursor: pointer;
+    padding: 5px 20px;
+    background: #ffffff;
+    border: none;
+    border-radius: 20px;
+    transition: 0.3s ease;
+}
+/* 子类别选项卡点击 */
+.tab-link.active {
+    background: #146DE5;
+    color: white;
+}
+.tab-link:hover {
+    background: #e4e4e4;
+}
+
+
+
+/* 链接项容器*/
+.links {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 30px;
+}
+
+/*链接样式*/
+.link-item {
+    display: none; /* 默认隐藏 */
+    align-items: center;
+    padding: 10px 20px;
+    background: #FFF;
+    border-radius: 8px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+    transition: var(--transition);
+    min-height: 80px;
+}
+/*链接图片容器*/
+.link-item img {
+    width: 30px;
+    height: 30px;
+    object-fit: contain;
+    margin-right: 16px;
+    flex-shrink: 0;
+}
+
+/*链接文字容器*/
+.link-info {
+    /*display: flex;*/
+    /*flex-direction: column;*/
+    /*justify-content: center;*/
+    /*gap: 1px;*/
+}
+/*链接标题*/
+.link-title {
+    font-size: 14px;
+    font-weight: bold;
+    color: #040A13;
+}
+
+.categories p{margin: 0;}
+/*链接文字介绍*/
+.link-description {
+    font-size: 12px;
+    color: #8E9195;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+
+/* 显示激活项 */
+.link-item.active {
+    display: flex; /* 显示激活项 */
+}
+
+.link-item:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+}
+
+
+
+
+
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .sidebar {
+        transform: translateX(-100%);
+    }
+
+    .main-content {
+        margin-left: 0;
+        width: 100%;
+    }
+}
+
+/*HTML表单缺少label，隐藏label文字显示样式*/
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+}
